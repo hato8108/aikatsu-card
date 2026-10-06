@@ -1,0 +1,9 @@
+{
+  "name": "Aikatsu Card Closet",
+  "short_name": "Aikatsu Cards",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fff8fc",
+  "theme_color": "#ffd9ea",
+  "icons": []
+}

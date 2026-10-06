@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffd9ea">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Aikatsu Cards">
+<link rel="manifest" href="manifest.webmanifest">
+<title>♡ Aikatsu Card Closet ♡</title>
+<style>
+:root{--pink:#ff8fbc;--pink2:#ffd9ea;--lav:#cbb8ff;--cream:#fffaf5;--ink:#54445c;--muted:#9a8d9d;--white:#fff;--line:#f0dce8;--shadow:0 8px 24px rgba(155,93,130,.12)}
+*{box-sizing:border-box}html,body{margin:0;background:linear-gradient(#fff8fc 0,#fff 45%,#f9f5ff 100%);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif}body{padding-bottom:90px}
+header{position:sticky;top:0;z-index:10;padding:calc(10px + env(safe-area-inset-top)) 16px 12px;background:rgba(255,250,253,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;justify-content:space-between}.logo{font-weight:900;font-size:20px;letter-spacing:.02em}.logo span{color:var(--pink)}.heart{font-size:22px}
+main{padding:14px 14px 30px;max-width:720px;margin:auto}
+.search{display:flex;gap:8px;background:white;border:1px solid var(--line);padding:8px;border-radius:18px;box-shadow:var(--shadow)}.search input{flex:1;border:0;outline:0;font-size:15px;background:transparent;padding:7px}.search button{border:0;background:#fff0f7;border-radius:12px;padding:8px 11px;color:#d8669a;font-weight:800}
+.chips{display:flex;gap:7px;overflow:auto;padding:12px 0 5px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}.chip{white-space:nowrap;border:1px solid var(--line);background:white;color:var(--muted);border-radius:99px;padding:8px 12px;font-size:12px}.chip.active{background:var(--pink2);color:#b64d7f;border-color:#ffc1dc;font-weight:800}
+.hero{margin:10px 0 15px;padding:18px;border-radius:24px;background:linear-gradient(135deg,#ffe5f0,#eee7ff);box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"✦  ♡  ✦";position:absolute;right:14px;top:10px;color:white;font-size:28px;opacity:.8}.hero b{font-size:18px}.hero p{margin:5px 0 0;font-size:12px;color:#866f87}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:10px 0 16px}.btn{border:0;border-radius:16px;padding:13px;font-weight:900;font-size:13px;box-shadow:var(--shadow)}.pink{background:linear-gradient(135deg,#ff9dc5,#ffb9d7);color:white}.white{background:white;color:#9b7090;border:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:white;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);position:relative}.pic{aspect-ratio:3/4;background:linear-gradient(135deg,#fff0f7,#eeeaff);display:flex;align-items:center;justify-content:center;overflow:hidden}.pic img{width:100%;height:100%;object-fit:cover}.placeholder{font-size:30px;color:#d9c5d5}.info{padding:10px 11px 12px}.name{font-weight:900;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.meta{font-size:10px;color:var(--muted);margin-top:4px}.tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:7px}.tag{background:#fff0f6;border-radius:99px;padding:3px 6px;font-size:9px;color:#a96786}.star{position:absolute;right:8px;top:8px;background:rgba(255,255,255,.9);width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:#ff91ba}
+.empty{text-align:center;padding:50px 20px;color:var(--muted);background:white;border:1px dashed var(--line);border-radius:20px}.empty b{display:block;color:#80667e;margin-bottom:6px}
+.modal{position:fixed;inset:0;background:rgba(60,40,60,.3);display:none;align-items:flex-end;z-index:30}.modal.on{display:flex}.sheet{width:100%;max-height:92vh;overflow:auto;background:#fffafa;border-radius:26px 26px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -10px 40px rgba(80,40,70,.15)}.grab{width:40px;height:5px;background:#e9d9e3;border-radius:9px;margin:0 auto 14px}.sheet h2{font-size:18px;margin:5px 0 14px}.preview{width:115px;aspect-ratio:3/4;border-radius:14px;overflow:hidden;background:#f5eaf1;margin-bottom:10px}.preview img{width:100%;height:100%;object-fit:cover}.form{display:grid;grid-template-columns:1fr 1fr;gap:9px}label{font-size:11px;color:#927b91;font-weight:700}input,select,textarea{display:block;width:100%;margin-top:5px;border:1px solid var(--line);border-radius:12px;padding:10px;background:white;color:var(--ink);font:inherit}.full{grid-column:1/-1}.savebar{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:13px}
+@media(min-width:600px){.grid{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="logo">♡ <span>Aikatsu</span> Card Closet</div><div class="heart">୨୧</div></div></header>
+<main>
+<section class="hero"><b>きらきらカードコレクション ✦</b><p>あなたのアイカツカードを、かわいく整理しよう♡</p></section>
+<div class="search"><input id="q" placeholder="カード名・ブランド・弾数を検索♡" oninput="render()"><button onclick="clearSearch()">×</button></div>
+<div class="chips">
+<button class="chip active" data-filter="all" onclick="filter('all',this)">すべて</button>
+<button class="chip" data-filter="プロモ" onclick="filter('プロモ',this)">♡ プロモ</button>
+<button class="chip" data-filter="N" onclick="filter('N',this)">N</button>
+<button class="chip" data-filter="R" onclick="filter('R',this)">R</button>
+<button class="chip" data-filter="SR" onclick="filter('SR',this)">SR</button>
+<button class="chip" data-filter="PR" onclick="filter('PR',this)">PR</button>
+</div>
+<div class="actions">
+<button class="btn pink" onclick="openAdd()">＋ カードを追加</button>
+<button class="btn white" onclick="document.getElementById('files').click()">♡ 写真から追加</button>
+<input id="files" type="file" accept="image/*" multiple hidden onchange="bulkPhotos(event)">
+</div>
+<div id="stats" style="font-size:12px;color:#9a8497;margin:0 2px 10px"></div>
+<div id="grid" class="grid"></div>
+</main>
+
+<div id="modal" class="modal" onclick="if(event.target===this)closeModal()"><div class="sheet">
+<div class="grab"></div><h2 id="mtitle">♡ カードを追加</h2>
+<div class="preview" id="preview"><span class="placeholder">♡</span></div>
+<input id="photo" type="file" accept="image/*" capture="environment" onchange="readPhoto(event)">
+<div class="form">
+<label>カード名<input id="name" placeholder="カード名"></label>
+<label>弾数<input id="series" placeholder="第1弾"></label>
+<label>区分<select id="promo"><option>通常</option><option>プロモ</option></select></label>
+<label>タイプ<select id="type"><option>キュート</option><option>クール</option><option>セクシー</option><option>ポップ</option><option>不明</option></select></label>
+<label>ブランド<input id="brand" placeholder="ブランド名"></label>
+<label>レア度<select id="rare"><option>N</option><option>R</option><option>SR</option><option>PR</option><option>CP</option><option>その他</option></select></label>
+<label class="full">メモ<textarea id="memo" rows="2" placeholder="お気に入りポイントなど♡"></textarea></label>
+</div>
+<div class="savebar"><button class="btn white" onclick="closeModal()">キャンセル</button><button class="btn pink" onclick="saveCard()">保存する ♡</button></div>
+</div></div>
+
+<script>
+const K="aikatsu_iphone_v2";let cards=JSON.parse(localStorage.getItem(K)||"[]"),editing=null,photo="";
+const $=id=>document.getElementById(id), esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+let active="all";
+function persist(){localStorage.setItem(K,JSON.stringify(cards))}
+function filter(v,el){active=v;document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));el.classList.add("active");render()}
+function clearSearch(){$("q").value="";render()}
+function openAdd(c=null){editing=c?.id||null;photo=c?.photo||"";$("mtitle").textContent=c?"♡ カードを編集":"♡ カードを追加";$("name").value=c?.name||"";$("series").value=c?.series||"";$("promo").value=c?.promo||"通常";$("type").value=c?.type||"不明";$("brand").value=c?.brand||"";$("rare").value=c?.rare||"N";$("memo").value=c?.memo||"";$("preview").innerHTML=photo?`<img src="${photo}">`:'<span class="placeholder">♡</span>';$("photo").value="";$("modal").classList.add("on")}
+function closeModal(){$("modal").classList.remove("on")}
+function readPhoto(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{photo=r.result;$("preview").innerHTML=`<img src="${photo}">`};r.readAsDataURL(f)}
+function saveCard(){let c={id:editing||crypto.randomUUID(),name:$("name").value.trim()||"名称未設定",series:$("series").value.trim(),promo:$("promo").value,type:$("type").value,brand:$("brand").value.trim(),rare:$("rare").value,memo:$("memo").value.trim(),photo};cards=editing?cards.map(x=>x.id===editing?c:x):[c,...cards];persist();closeModal();render()}
+function edit(id){openAdd(cards.find(x=>x.id===id))}
+function bulkPhotos(e){[...e.target.files].forEach(f=>{let r=new FileReader();r.onload=()=>{cards.unshift({id:crypto.randomUUID(),name:f.name.replace(/\.[^.]+$/,""),series:"",promo:"通常",type:"不明",brand:"",rare:"N",memo:"写真から追加",photo:r.result});persist();render()};r.readAsDataURL(f)}e.target.value=""}
+function render(){let q=$("q").value.toLowerCase();let list=cards.filter(c=>{let hay=[c.name,c.series,c.promo,c.type,c.brand,c.rare,c.memo].join(" ").toLowerCase();return(!q||hay.includes(q))&&(active==="all"||c.promo===active||c.rare===active)});$("stats").textContent=`♡ ${cards.length}枚コレクション中 ／ ${list.length}枚を表示`;$("grid").innerHTML=list.length?list.map(c=>`<article class="card" onclick="edit('${c.id}')"><div class="star">♡</div><div class="pic">${c.photo?`<img src="${c.photo}">`:'<span class="placeholder">♡</span>'}</div><div class="info"><div class="name">${esc(c.name)}</div><div class="meta">${esc(c.series||"弾数未設定")} ・ ${esc(c.brand||"ブランド未設定")}</div><div class="tags"><span class="tag">${esc(c.promo)}</span><span class="tag">${esc(c.type)}</span><span class="tag">${esc(c.rare)}</span></div></div></article>`).join(""):'<div class="empty" style="grid-column:1/-1"><b>まだカードがないよ♡</b>「カードを追加」からコレクションを始めよう！</div>'}
+render();
+</script>
+</body>
+</html>
